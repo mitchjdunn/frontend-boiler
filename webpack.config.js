@@ -9,6 +9,10 @@ module.exports = {
                 use: ["style-loader", "css-loader"],
             },
             {
+                test: /\.ts$/i,
+                use: 'ts-loader',
+            },
+            {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [{
                     loader: 'file-loader',
@@ -19,6 +23,9 @@ module.exports = {
                 }]
            }
         ],
+    },
+    resolve: {
+        extensions: ['.ts', '.js'],
     },
     output: {
         path: __dirname + "/build",
