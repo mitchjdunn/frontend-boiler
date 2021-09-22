@@ -20,7 +20,7 @@ export interface Message{
 
 export class GenericMessageBus implements MessageBus{
     registeredMessages: { [id: string]: Message}[] = [];
-    waiters: Map<string, Map<string, (args: {}) => void>> = new Map<string, Map<string, (args: {}) => void>>();
+    waiters: Map<string, Map<string, (args: Message) => void>> = new Map<string, Map<string, (args: Message) => void>>();
 
     debug: boolean = false;
 
@@ -28,7 +28,7 @@ export class GenericMessageBus implements MessageBus{
         this.debug = bool;
     }
 
-    addWaiter(message: Message, waiterId: string, callback: (args: {}) => void): void {
+    addWaiter(message: Message, waiterId: string, callback: (args: Message) => void): void {
 
         if(this.waiters.get(message.messageName)){
             if(this.debug)
@@ -38,7 +38,7 @@ export class GenericMessageBus implements MessageBus{
             if(this.debug)
                 console.log("adding", waiterId,"to", message.messageName);
             this.registeredMessages[message.messageName] = message;
-            this.waiters.set(message.messageName,new Map<string, (args: {}) => void>().set(waiterId, callback));
+            this.waiters.set(message.messageName,new Map<string, (args: Message) => void>().set(waiterId, callback));
         }
     }
     removeWaiter(message: Message, waiterId: string) {
@@ -62,14 +62,14 @@ export class GenericMessageBus implements MessageBus{
             throw new Error("Message type not registered")
         }
         if(this.waiters.get(message.messageName)){
-            let callbackMap: Map<string, (args: {}) => void> = this.waiters.get(message.messageName);
+            let callbackMap: Map<string, (args: Message) => void> = this.waiters.get(message.messageName);
 
-            callbackMap.forEach((value: (args: {}) => void, key: string ) =>
+            callbackMap.forEach((value: (args: Message) => void, key: string ) =>
             {
                 if(this.debug){
                     console.log("Sending message to ", key);
                 }
-                value(message.getArgs());
+                value(message);
             });
 
 

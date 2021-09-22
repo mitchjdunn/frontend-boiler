@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
     entry: __dirname + "/src/index.ts",
@@ -25,13 +27,15 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js', '.css'],
     },
     output: {
         path: __dirname + "/build",
         filename: "index.js"
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: "src/index.html", })
+        new HtmlWebpackPlugin({ template: "src/index.html", }),
+        new CopyWebpackPlugin({ patterns: [  {from: "**/*.css", to:"", context: "./src"}]})
+
     ]
 };

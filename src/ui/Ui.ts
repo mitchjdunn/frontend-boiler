@@ -1,6 +1,7 @@
 import { Page } from './renderables/Page'
 import { Renderable } from './renderables/Renderable'
 import { MessageBus, Message, GenericMessage } from '../coms/MessageBus';
+import { Style } from './Style';
 
 export class Ui implements Renderable {
 
@@ -23,6 +24,7 @@ export class Ui implements Renderable {
         }
         );
     }
+    style: Style;
 
     
    appendPage(page: Page): void {

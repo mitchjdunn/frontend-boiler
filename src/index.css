@@ -6,9 +6,10 @@ html, body {
     font-family: sans-serif;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+nav {
+    background-color: navy;
+}
+
+button:active , button.active{
+    background-color: green;
 }
