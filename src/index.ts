@@ -39,4 +39,4 @@ page2.appendRenderable(div2);
 ui.appendPage(homePage);
 ui.appendPage(page2);
 
-ui.render();
+messageBus.sendMessage(new ChangePageMessage("home"));

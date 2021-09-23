@@ -1,6 +1,6 @@
 import { Page } from './renderables/Page'
 import { Renderable } from './renderables/Renderable'
-import { MessageBus, Message, GenericMessage } from '../coms/MessageBus';
+import { MessageBus, Message, GenericMessage, WaiterPriority} from '../coms/MessageBus';
 import { Style } from './Style';
 
 export class Ui implements Renderable {
@@ -16,7 +16,7 @@ export class Ui implements Renderable {
 
     constructor(messageBus: MessageBus){
         this.messageBus=messageBus;
-        this.messageBus.addWaiter(new GenericMessage("ChangePage"), "UI", (args: {pageName: string}) => 
+        this.messageBus.addWaiter(new GenericMessage("ChangePage"), "UI", WaiterPriority.last, (args: {pageName: string}) => 
         {
             console.log("executing Change Page for UI");
             this.setActivePage(args.pageName);

@@ -1,7 +1,7 @@
 import { Renderable } from './Renderable'
 import { Button } from './Button'
 import { ChangePageMessage } from '../Ui';
-import { Message, MessageBus } from '../../coms/MessageBus';
+import { Message, MessageBus, WaiterPriority } from '../../coms/MessageBus';
 import { Style } from '../Style';
 
 
@@ -43,7 +43,7 @@ export class NavbarButton extends Button {
         this.message = message;
         this.messageBus = messageBus;
         this.messageId = pageName + "-NavbarButton";
-        this.messageBus.addWaiter(this.message, this.messageId, (args: ChangePageMessage) => {
+        this.messageBus.addWaiter(this.message, this.messageId, WaiterPriority.high, (args: ChangePageMessage) => {
             if(args.pageName == this.pageName){
                 console.log(this.pageName, "is active");
                 this.isActive = true;
