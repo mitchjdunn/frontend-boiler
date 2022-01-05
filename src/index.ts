@@ -1,7 +1,8 @@
 import {Ui, ChangePageMessage} from './ui/Ui';
 import {Div} from './ui/renderables/Div';
 import { Page } from './ui/renderables/Page';
-import { GenericMessage, GenericMessageBus } from './coms/MessageBus';
+import { GenericMessage, GenericMessageBus } from './utils/MessageBus';
+import { PathHandler } from './utils/PathHandler';
 import { Button } from './ui/renderables/Button';
 import { Navbar, NavbarButton } from './ui/renderables/Navbar';
 
@@ -39,4 +40,9 @@ page2.appendRenderable(div2);
 ui.appendPage(homePage);
 ui.appendPage(page2);
 
-messageBus.sendMessage(new ChangePageMessage("home"));
+// TODO define me
+var pathHandler: PathHandler = new PathHandler(messageBus);
+var path: string = pathHandler.getCurrentPath();
+
+pathHandler.:w
+

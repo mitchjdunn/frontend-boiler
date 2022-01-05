@@ -1,4 +1,4 @@
-import { GenericMessage, Message, MessageBus } from '../../coms/MessageBus';
+import { GenericMessage, Message, MessageBus } from '../../utils/MessageBus';
 import { Style } from '../Style';
 import {Renderable} from './Renderable';
 

@@ -1,7 +1,7 @@
 import { Renderable } from './Renderable'
 import { Button } from './Button'
 import { ChangePageMessage } from '../Ui';
-import { Message, MessageBus, WaiterPriority } from '../../coms/MessageBus';
+import { Message, MessageBus, WaiterPriority } from '../../utils/MessageBus';
 import { Style } from '../Style';
 
 

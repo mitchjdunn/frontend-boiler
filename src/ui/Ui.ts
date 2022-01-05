@@ -1,6 +1,6 @@
 import { Page } from './renderables/Page'
 import { Renderable } from './renderables/Renderable'
-import { MessageBus, Message, GenericMessage, WaiterPriority} from '../coms/MessageBus';
+import { MessageBus, Message, GenericMessage, WaiterPriority} from '../utils/MessageBus';
 import { Style } from './Style';
 
 export class Ui implements Renderable {
